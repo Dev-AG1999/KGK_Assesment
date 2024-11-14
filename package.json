@@ -9,8 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "@prisma/client": "^5.22.0",
+    "@prisma/extension-optimize": "^1.0.1",
+    "docker": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "next": "^15.0.3",
+    "pg": "^8.13.1",
+    "prisma": "^5.22.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-quill": "^2.0.0",
+    "slate": "^0.110.2",
+    "slate-history": "^0.110.3",
+    "slate-react": "^0.111.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.14"
   }
 }

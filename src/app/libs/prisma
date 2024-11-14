@@ -1,0 +1,12 @@
+// lib/prisma.js
+
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+// Optionally, you can add a check to ensure the Prisma client is only instantiated once (useful for hot-reloading during development)
+if (process.env.NODE_ENV === 'development') {
+  global.prisma = global.prisma || prisma;
+}
+
+export default prisma;
