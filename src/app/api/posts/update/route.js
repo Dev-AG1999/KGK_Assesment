@@ -1,9 +1,12 @@
 import prisma from '../../../libs/prisma';
+import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { id, title, content } = await request.json();
-    const slug = title.toLowerCase().replace(/\s+/g, '-'); // Simple slug generation
+    const { id, title, content,slug } = await request.json();
+    console.log("line 6",slug);
+    
+    const custom_slug = title.toLowerCase().replace(/\s+/g, '-'); // Simple slug generation
 
     const post = await prisma.post.upsert({
       where: {
@@ -11,19 +14,28 @@ export async function POST(request) {
       },
       update: {
         title,
-        slug,
+        slug:slug? slug : custom_slug,
         content,
       },
       create: {
         title,
-        slug,
+        slug: custom_slug,
         content,
       },
     });
 
-    return new Response(JSON.stringify(post), { status: 201 });
+    return NextResponse.json({
+      message: "Posts fetched successfully",
+      status: 200,
+      success: true,
+
+    });
   } catch (error) {
     console.error("Error creating or updating post:", error);
-    return new Response(JSON.stringify({ error: 'Failed to create or update post' }), { status: 500 });
+    return NextResponse.json({
+      message: "There is some issue in connection",
+      status: 500,
+      success: false
+    }, { status: 500 });
   }
 }

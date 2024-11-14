@@ -7,7 +7,8 @@ import PostEntity from "../Entity/PostEntity";
 // Define the default state with an instance of PostEntity
 const defaultState = {
   postList: [],
-  post: new PostEntity() // Initialize with default values in PostEntity
+  post: new PostEntity(),
+  isLoading : false // Initialize with default values in PostEntity
 };
 
 // Define your reducer function
@@ -17,6 +18,8 @@ function genReducer(state, action) {
       return { ...state, postList: action.payload };
     case ActionTypes.SET_POST:
       return { ...state, post: action.payload };
+      case ActionTypes.SET_IS_LOADING:
+        return { ...state, isLoading: action.payload };
     default:
       return state;
   }
